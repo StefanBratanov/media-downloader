@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Pirate Bay - The galaxy's most resilient bittorrent site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="Search The Pirate Bay" />
+    <link rel="stylesheet" type="text/css" href="//assetss.b-cdn.net/static/css/pirate6.css"/>
+    <link rel="dns-prefetch" href="//syndication.exoclick.com/">
+    <link rel="dns-prefetch" href="//main.exoclick.com/">
+    <link rel="dns-prefetch" href="//static-ssl.exoclick.com/">
+    <link rel="dns-prefetch" href="//2468.go2cloud.org">
+    <link rel="dns-prefetch" href="//protect-your-privacy.net">
+    <link rel="dns-prefetch" href="//anonymous-net.com">
+    <link rel="dns-prefetch" href="//ads.exosrv.com">
+    <link rel="dns-prefetch" href="//s3.amazonaws.com">
+    <link rel="dns-prefetch" href="//assetss.b-cdn.net">
+    <link rel="canonical" href="//piratebay.icu/search/stranger%20things///0" />
+    <style type="text/css">
+        .searchBox{
+            margin: 6px;
+            width: 300px;
+            vertical-align: middle;
+            padding: 2px;
+            background-image:url('//assetss.b-cdn.net/static/img/icon-https.gif');
+            background-repeat:no-repeat;
+            background-position: right;
+        }
+        .detLink {
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        .detDesc {
+            color: #4e5456;
+        }
+        .detDesc a:hover {
+            color: #000099;
+            text-decoration: underline;
+        }
+        .sortby {
+            text-align: left;
+            float: left;
+        }
+        .detName {
+            padding-top: 3px;
+            padding-bottom: 2px;
+        }
+        .viewswitch {
+            font-style: normal;
+            float: right;
+            text-align: right;
+            font-weight: normal;
+        }
+    </style>
+
+
+    <meta name="description" content="Search for and download any torrent from the pirate bay using search query stranger things. Direct download via magnet link."/>
+    <meta name="keywords" content="stranger things direct download torrent magnet tpb piratebay search"/>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script><script type="text/javascript" src="https://www.powr.io/powr.js?external-type=html"></script>
+</head>
+
+<body>
+
+
+
+
+
+
+<div id="header">
+
+    <form method="get" id="q" action="/search.php">
+        <a href="/" class="img"><img src="//assetss.b-cdn.net/static/img/tpblogo_sm_ny.gif" id="TPBlogo" alt="The Pirate Bay" /></a>
+        <b><a href="/" title="Search Torrents">Search Torrents</a></b>&nbsp;&nbsp;|&nbsp;
+        <a href="/browse" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+        <a href="/recent" title="Recent Torrent">Recent Torrents</a>&nbsp;&nbsp;|&nbsp;
+        <a href="/tv/" title="TV shows">TV shows</a>&nbsp;&nbsp;|&nbsp;
+        <a href="/music" title="Music">Music</a>&nbsp;&nbsp;|&nbsp;
+        <a href="/top" title="Top 100">Top 100</a>
+        <br /><input type="search" title="Pirate Search" name="q" required placeholder="Search here..." value="stranger things" style="background-color:#ffffe0;" class="searchBox" /><input value="Pirate Search" type="submit" class="submitbutton"  />  <br />            <label for="audio" title="Audio"><input id="audio" name="audio" onclick="javascript:rmAll();" type="checkbox"/>Audio</label>
+        <label for="video" title="Video"><input id="video" name="video" onclick="javascript:rmAll();" type="checkbox"/>Video</label>
+        <label for="apps" title="Applications"><input id="apps" name="apps" onclick="javascript:rmAll();" type="checkbox"/>Applications</label>
+        <label for="games" title="Games"><input id="games" name="games" onclick="javascript:rmAll();" type="checkbox"/>Games</label>
+        <label for="porn" title="Porn"><input id="porn" name="porn" onclick="javascript:rmAll();" type="checkbox"/>Porn</label>
+        <label for="other" title="Other"><input id="other" name="other" onclick="javascript:rmAll();" type="checkbox"/>Other</label>
+
+        <select id="category" name="category" onchange="javascript:setAll();">
+            <option value="0">All</option>
+            <optgroup label="Audio">
+                <option value="101">Music</option>
+                <option value="102">Audio books</option>
+                <option value="103">Sound clips</option>
+                <option value="104">FLAC</option>
+                <option value="199">Other</option>
+            </optgroup>
+            <optgroup label="Video">
+                <option value="201">Movies</option>
+                <option value="202">Movies DVDR</option>
+                <option value="203">Music videos</option>
+                <option value="204">Movie clips</option>
+                <option value="205">TV shows</option>
+                <option value="206">Handheld</option>
+                <option value="207">HD - Movies</option>
+                <option value="208">HD - TV shows</option>
+                <option value="209">3D</option>
+                <option value="299">Other</option>
+            </optgroup>
+            <optgroup label="Applications">
+                <option value="301">Windows</option>
+                <option value="302">Mac</option>
+                <option value="303">UNIX</option>
+                <option value="304">Handheld</option>
+                <option value="305">IOS (iPad/iPhone)</option>
+                <option value="306">Android</option>
+                <option value="399">Other OS</option>
+            </optgroup>
+            <optgroup label="Games">
+                <option value="401">PC</option>
+                <option value="402">Mac</option>
+                <option value="403">PSx</option>
+                <option value="404">XBOX360</option>
+                <option value="405">Wii</option>
+                <option value="406">Handheld</option>
+                <option value="407">IOS (iPad/iPhone)</option>
+                <option value="408">Android</option>
+                <option value="499">Other</option>
+            </optgroup>
+            <optgroup label="Porn">
+                <option value="501">Movies</option>
+                <option value="502">Movies DVDR</option>
+                <option value="503">Pictures</option>
+                <option value="504">Games</option>
+                <option value="505">HD - Movies</option>
+                <option value="506">Movie clips</option>
+                <option value="599">Other</option>
+            </optgroup>
+            <optgroup label="Other">
+                <option value="601">E-books</option>
+                <option value="602">Comics</option>
+                <option value="603">Pictures</option>
+                <option value="604">Covers</option>
+                <option value="605">Physibles</option>
+                <option value="699">Other</option>
+            </optgroup>
+        </select>
+
+        <input type="hidden" name="page" value="0" />
+        <input type="hidden" name="orderby" value="99" />
+    </form>
+</div><!-- // div:header -->
+
+<h2><span>Search results: stranger things</span>&nbsp;Displaying hits from 0 to 30 (approx 277 found)</h2>
+
+<div id="SearchResults"><div id="content">
+    <center>
+        <p><h4> please report any problem and contact us  at  <a href="/cdn-cgi/l/email-protection#45363035352a373105352c372431202a2b292c2b206b2c2b232a" target="_top"><span class="__cf_email__" data-cfemail="eb989e9b9b84999fab9b82998a9f8e84858782858ec582858d84">[email&#160;protected]</span></a> </h4></p>
+
+        <br/>
+        <h3>We Need Your Help Please Donate And Support US </h3></center>
+    <div class="powr-paypal-button" id="04da7223_1556855429"></div>
+
+
+    <div id="sky-right">
+
+    </div>
+
+
+    <div id="main-content">
+        <table id="searchResult">
+            <thead id="tableHead">
+            <tr class="header">
+                <th><a href="/search/stranger%20things/0/13/0" title="Order by Type">Type</a></th>
+                <th><div class="sortby"><a href="/search/stranger%20things/0/1/0" title="Order by Name">Name</a> (Order by: <a href="/search/stranger%20things/0/3/0" title="Order by Uploaded">Uploaded</a>, <a href="/search/stranger%20things/0/5/0" title="Order by Size">Size</a>, <span style="white-space: nowrap;"><a href="/search/stranger%20things/0/11/0" title="Order by ULed by">ULed by</a></span>, <a href="/search/stranger%20things/0/8/0" title="Order by Seeders">SE</a>, <a href="/search/stranger%20things/0/9/0" title="Order by Leechers">LE</a>)</div><div class="viewswitch"> View: <a href="/switchview.php?view=s">Single</a> / Double&nbsp;</div></th>
+                <th><abbr title="Seeders"><a href="/search/stranger%20things/0/8/0" title="Order by Seeders">SE</a></abbr></th>
+                <th><abbr title="Leechers"><a href="/search/stranger%20things/0/9/0" title="Order by Leechers">LE</a></abbr></th>
+            </tr>
+            </thead>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15324627/Stranger_Things_Season_1_720p_WebRip_EN-SUB_x264-[MULVAcoded]" class="detLink" title="Details for Stranger Things Season 1 720p WebRip EN-SUB x264-[MULVAcoded]">Stranger Things Season 1 720p WebRip EN-SUB x264-[MULVAcoded]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:db47f718eba63a8fb431558ad00ef8b76e4698a0&dn=Stranger+Things+Season+1+720p+WebRip+EN-SUB+x264-%5BMULVAcoded%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="http://www.bitlord.me/share/?re=ThePirateBay&ba=b8977e&co=fff&sh=20f3GOumOo+0MVWK0A74t25GmKA=&ur=//piratebay.icu/search/stranger%20things///0&fn=Stranger Things Season 1 720p WebRip EN-SUB x264-[MULVAcoded]" target="_blank" title="Play now using Bitlord"><img src="//assetss.b-cdn.net/static/img/icons/icon-bitx.png" alt="Play link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 19 comments." title="This torrent has 19 comments." /><a href="/user/Mulva1989"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 07-16&nbsp;2016, Size 2.42&nbsp;GiB, ULed by <a class="detDesc" href="/user/Mulva1989/" title="Browse Mulva1989">Mulva1989</a></font>
+                </td>
+                <td align="right">482</td>
+                <td align="right">90</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18846637/Stranger.Things.SEASON.02.S02.COMPLETE.720p.10bit.WEBRip.2CH.x26" class="detLink" title="Details for Stranger.Things.SEASON.02.S02.COMPLETE.720p.10bit.WEBRip.2CH.x26">Stranger.Things.SEASON.02.S02.COMPLETE.720p.10bit.WEBRip.2CH.x26</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:0f7b458c519ce329b03b50495aaa6862e4de9f24&dn=Stranger.Things.SEASON.02.S02.COMPLETE.720p.10bit.WEBRip.2CH.x26&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="http://www.bitlord.me/share/?re=ThePirateBay&ba=b8977e&co=fff&sh=D3tFjFGc4ymwO1BJWqpoYuTenyQ=&ur=//piratebay.icu/search/stranger%20things///0&fn=Stranger.Things.SEASON.02.S02.COMPLETE.720p.10bit.WEBRip.2CH.x26" target="_blank" title="Play now using Bitlord"><img src="//assetss.b-cdn.net/static/img/icons/icon-bitx.png" alt="Play link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 7 comments." title="This torrent has 7 comments." /><a href="/user/Dr.XJ"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 2.87&nbsp;GiB, ULed by <a class="detDesc" href="/user/Dr.XJ/" title="Browse Dr.XJ">Dr.XJ</a></font>
+                </td>
+                <td align="right">337</td>
+                <td align="right">73</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18865017/Stranger.Things.Season.2.S02.1080p.WEBRip.5.1.HEVC.x265-GIRAYS" class="detLink" title="Details for Stranger.Things.Season.2.S02.1080p.WEBRip.5.1.HEVC.x265-GIRAYS">Stranger.Things.Season.2.S02.1080p.WEBRip.5.1.HEVC.x265-GIRAYS</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:0ccd363f4b34f7cda1370a10b968ba17686ec15a&dn=Stranger.Things.Season.2.S02.1080p.WEBRip.5.1.HEVC.x265-GIRAYS&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="http://www.bitlord.me/share/?re=ThePirateBay&ba=b8977e&co=fff&sh=DM02P0s0982hNwoQuWi6F2huwVo=&ur=//piratebay.icu/search/stranger%20things///0&fn=Stranger.Things.Season.2.S02.1080p.WEBRip.5.1.HEVC.x265-GIRAYS" target="_blank" title="Play now using Bitlord"><img src="//assetss.b-cdn.net/static/img/icons/icon-bitx.png" alt="Play link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/insane86"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 10-29&nbsp;2017, Size 4.97&nbsp;GiB, ULed by <a class="detDesc" href="/user/insane86/" title="Browse insane86">insane86</a></font>
+                </td>
+                <td align="right">118</td>
+                <td align="right">37</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15353205/Stranger_Things_Season_1_S01_1080p_WEBRip_6CH_HEVC_x265-GIRAYS_4" class="detLink" title="Details for Stranger Things Season 1 S01 1080p WEBRip 6CH HEVC x265-GIRAYS 4">Stranger Things Season 1 S01 1080p WEBRip 6CH HEVC x265-GIRAYS 4</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:c20715a4453db223c56d7d620d7804e3079b39e8&dn=Stranger+Things+Season+1+S01+1080p+WEBRip+6CH+HEVC+x265-GIRAYS+4&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="http://www.bitlord.me/share/?re=ThePirateBay&ba=b8977e&co=fff&sh=wgcVpEU9siPFbX1iDXgE4webOeg=&ur=//piratebay.icu/search/stranger%20things///0&fn=Stranger Things Season 1 S01 1080p WEBRip 6CH HEVC x265-GIRAYS 4" target="_blank" title="Play now using Bitlord"><img src="//assetss.b-cdn.net/static/img/icons/icon-bitx.png" alt="Play link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><a href="/user/insane86"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 07-19&nbsp;2016, Size 4.04&nbsp;GiB, ULed by <a class="detDesc" href="/user/insane86/" title="Browse insane86">insane86</a></font>
+                </td>
+                <td align="right">90</td>
+                <td align="right">119</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15325204/Stranger_Things_-_Season_1_-_720p_WEBRiP_-_x264_-_ShAaNiG" class="detLink" title="Details for Stranger Things - Season 1 - 720p WEBRiP - x264 - ShAaNiG">Stranger Things - Season 1 - 720p WEBRiP - x264 - ShAaNiG</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:27db74efe8fb657ddfb93d70616419c65c6dfb7b&dn=Stranger+Things+-+Season+1+-+720p+WEBRiP+-+x264+-+ShAaNiG&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="http://www.bitlord.me/share/?re=ThePirateBay&ba=b8977e&co=fff&sh=J9t07+j7ZX3fuT1wYWQZxlxt+3s=&ur=//piratebay.icu/search/stranger%20things///0&fn=Stranger Things - Season 1 - 720p WEBRiP - x264 - ShAaNiG" target="_blank" title="Play now using Bitlord"><img src="//assetss.b-cdn.net/static/img/icons/icon-bitx.png" alt="Play link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/ShAaNiG"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 07-16&nbsp;2016, Size 3.41&nbsp;GiB, ULed by <a class="detDesc" href="/user/ShAaNiG/" title="Browse ShAaNiG">ShAaNiG</a></font>
+                </td>
+                <td align="right">83</td>
+                <td align="right">11</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15312371/Stranger.Things.S01E01.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E01.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E01.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:a2139c74cedebaca76681a6dcaa441ee4891561c&dn=Stranger.Things.S01E01.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 253.25&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">41</td>
+                <td align="right">13</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18840093/Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE[ettv]" class="detLink" title="Details for Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE[ettv]">Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:3555e9acde27dc19a54152e2410e45c1dee7fd98&dn=Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 375.4&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">38</td>
+                <td align="right">3</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/16333952/Stranger.Things.S01.Season.1.Complete.720p.WEB-DL.X264-MRSK" class="detLink" title="Details for Stranger.Things.S01.Season.1.Complete.720p.WEB-DL.X264-MRSK">Stranger.Things.S01.Season.1.Complete.720p.WEB-DL.X264-MRSK</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:87393535faab2ba0c124e4452d9242c476750e7b&dn=Stranger.Things.S01.Season.1.Complete.720p.WEB-DL.X264-MRSK&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/maximersk"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 11-22&nbsp;2016, Size 3.43&nbsp;GiB, ULed by <a class="detDesc" href="/user/maximersk/" title="Browse maximersk">maximersk</a></font>
+                </td>
+                <td align="right">33</td>
+                <td align="right">7</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15314095/Stranger.Things.S01E08.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E08.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E08.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:ba7642c2a996cc2abb9af5226dec697aea25a663&dn=Stranger.Things.S01E08.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 251.48&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">31</td>
+                <td align="right">8</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/100" title="More from this category">Audio</a><br />
+                        (<a href="/browse/101" title="More from this category">Music</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15599437/Stranger_Things_vol._1__amp__2_soundtrack" class="detLink" title="Details for Stranger Things vol. 1 &amp; 2 soundtrack">Stranger Things vol. 1 &amp; 2 soundtrack</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:d2a7e42ca278f125e3c27b62ad3381e713d1f6a8&dn=Stranger+Things+vol.+1+%26amp%3B+2+soundtrack&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 08-19&nbsp;2016, Size 336.84&nbsp;MiB, ULed by <a class="detDesc" href="/user/Rant423/" title="Browse Rant423">Rant423</a></font>
+                </td>
+                <td align="right">31</td>
+                <td align="right">3</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/19295924/Stranger_Things_Season_2_720p_NF_WEBRip_DD5.1_x264-PSYPHER" class="detLink" title="Details for Stranger Things Season 2 720p NF WEBRip DD5.1 x264-PSYPHER">Stranger Things Season 2 720p NF WEBRip DD5.1 x264-PSYPHER</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:a61c500ec0ebbae81dec34a49c7848daa78567a5&dn=Stranger+Things+Season+2+720p+NF+WEBRip+DD5.1+x264-PSYPHER&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/Team_xRG"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 12-06&nbsp;2017, Size 7.1&nbsp;GiB, ULed by <a class="detDesc" href="/user/Team_xRG/" title="Browse Team_xRG">Team_xRG</a></font>
+                </td>
+                <td align="right">31</td>
+                <td align="right">11</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15313428/Stranger.Things.S01E05.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E05.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E05.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:847e8cacdeb04929d3eb440475a44484cc5479d5&dn=Stranger.Things.S01E05.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 274.79&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">27</td>
+                <td align="right">7</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15313592/Stranger.Things.S01E06.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E06.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E06.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:8fff181be63a75c0a4d5e6e230221e512e36c97a&dn=Stranger.Things.S01E06.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 296.57&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">26</td>
+                <td align="right">6</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15313830/Stranger.Things.S01E07.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E07.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E07.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:24d09e3684a2180bb2e55fcbe496dc247066047e&dn=Stranger.Things.S01E07.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 229.06&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">25</td>
+                <td align="right">7</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/100" title="More from this category">Audio</a><br />
+                        (<a href="/browse/199" title="More from this category">Other</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15552381/Kyle_Dixon__Michael_Stein-Stranger_Things_OST(2016)_[320kbps]" class="detLink" title="Details for Kyle Dixon  Michael Stein-Stranger Things OST(2016) [320kbps]">Kyle Dixon  Michael Stein-Stranger Things OST(2016) [320kbps]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:280720ad37f86d03538a122ca0daa94c90fd3e8a&dn=Kyle+Dixon++Michael+Stein-Stranger+Things+OST%282016%29+%5B320kbps%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/kajalsus"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 08-12&nbsp;2016, Size 160.82&nbsp;MiB, ULed by <a class="detDesc" href="/user/kajalsus/" title="Browse kajalsus">kajalsus</a></font>
+                </td>
+                <td align="right">24</td>
+                <td align="right">0</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15312863/Stranger.Things.S01E03.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E03.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E03.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:c2b0712715ec40602eb4f10a56d395598d75405c&dn=Stranger.Things.S01E03.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 268.07&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">23</td>
+                <td align="right">7</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15312539/Stranger.Things.S01E02.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E02.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E02.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:ccbfafda2e64576b4bda13b5566306ce92f80d1a&dn=Stranger.Things.S01E02.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 255.8&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">22</td>
+                <td align="right">8</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15313108/Stranger.Things.S01E04.WEBRip.x264-TURBO[ettv]" class="detLink" title="Details for Stranger.Things.S01E04.WEBRip.x264-TURBO[ettv]">Stranger.Things.S01E04.WEBRip.x264-TURBO[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:ddd3c7df65edaa588730ba39fba9f5b623389d46&dn=Stranger.Things.S01E04.WEBRip.x264-TURBO%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-15&nbsp;2016, Size 226.39&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+                </td>
+                <td align="right">22</td>
+                <td align="right">8</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/15716139/NASAs.Unexplained.Files.S03E01.Plutos.Stranger.Things.720p.HD..." class="detLink" title="Details for NASAs.Unexplained.Files.S03E01.Plutos.Stranger.Things.720p.HD...">NASAs.Unexplained.Files.S03E01.Plutos.Stranger.Things.720p.HD...</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:6d59188687dde86cc1020917702adebeac9984d0&dn=NASAs.Unexplained.Files.S03E01.Plutos.Stranger.Things.720p.HD...&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/EtHD"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 08-31&nbsp;2016, Size 896.92&nbsp;MiB, ULed by <a class="detDesc" href="/user/EtHD/" title="Browse EtHD">EtHD</a></font>
+                </td>
+                <td align="right">21</td>
+                <td align="right">10</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847246/Stranger.Things.S02E02.iNTERNAL.WEB.x264-STRiFE" class="detLink" title="Details for Stranger.Things.S02E02.iNTERNAL.WEB.x264-STRiFE">Stranger.Things.S02E02.iNTERNAL.WEB.x264-STRiFE</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:ec9c52cfca0127d399aef4fcc344f2b57b53b878&dn=Stranger.Things.S02E02.iNTERNAL.WEB.x264-STRiFE&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 443.2&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">21</td>
+                <td align="right">3</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847283/Stranger.Things.S02E04.iNTERNAL.WEB.x264-STRiFE" class="detLink" title="Details for Stranger.Things.S02E04.iNTERNAL.WEB.x264-STRiFE">Stranger.Things.S02E04.iNTERNAL.WEB.x264-STRiFE</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:b50ac71118bd74754823a24d93d9ae66d4534a14&dn=Stranger.Things.S02E04.iNTERNAL.WEB.x264-STRiFE&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 321.66&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">21</td>
+                <td align="right">3</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847262/Stranger.Things.S02E03.iNTERNAL.WEB.x264-STRiFE" class="detLink" title="Details for Stranger.Things.S02E03.iNTERNAL.WEB.x264-STRiFE">Stranger.Things.S02E03.iNTERNAL.WEB.x264-STRiFE</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:c85addff8c90b1c2e6738ee7d4b5b6c527142141&dn=Stranger.Things.S02E03.iNTERNAL.WEB.x264-STRiFE&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//assetss.b-cdn.net/static/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 355.36&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">19</td>
+                <td align="right">2</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847302/Stranger.Things.S02E07.iNTERNAL.WEB.x264-STRiFE_" class="detLink" title="Details for Stranger.Things.S02E07.iNTERNAL.WEB.x264-STRiFE ">Stranger.Things.S02E07.iNTERNAL.WEB.x264-STRiFE </a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:74cda127accbbd51fe76a5a66902ff996c8ee460&dn=Stranger.Things.S02E07.iNTERNAL.WEB.x264-STRiFE+&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 291.16&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">19</td>
+                <td align="right">2</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847296/Stranger.Things.S02E06.iNTERNAL.WEB.x264-STRiFE_" class="detLink" title="Details for Stranger.Things.S02E06.iNTERNAL.WEB.x264-STRiFE ">Stranger.Things.S02E06.iNTERNAL.WEB.x264-STRiFE </a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:b2e7c516d9115bb52c8ce345578987875609e916&dn=Stranger.Things.S02E06.iNTERNAL.WEB.x264-STRiFE+&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 390.07&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">18</td>
+                <td align="right">4</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/23154666/Stranger.Things.S01.1080p.BluRay.x264-SHORTBREHD_[Season_1_One]" class="detLink" title="Details for Stranger.Things.S01.1080p.BluRay.x264-SHORTBREHD [Season 1 One]">Stranger.Things.S01.1080p.BluRay.x264-SHORTBREHD [Season 1 One]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:7f4f499d35e4ee8f8df1070be4ddad4883b0e62b&dn=Stranger.Things.S01.1080p.BluRay.x264-SHORTBREHD+%5BSeason+1+One%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/GoodFilms"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 07-13&nbsp;2018, Size 26.69&nbsp;GiB, ULed by <a class="detDesc" href="/user/GoodFilms/" title="Browse GoodFilms">GoodFilms</a></font>
+                </td>
+                <td align="right">18</td>
+                <td align="right">11</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18844702/Stranger_Things_Season_2_S02_720p_WEBRip_x265-HETeam" class="detLink" title="Details for Stranger Things Season 2 S02 720p WEBRip x265-HETeam">Stranger Things Season 2 S02 720p WEBRip x265-HETeam</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:ad74fc90115e3582ac03f59cc01c13c63d663714&dn=Stranger+Things+Season+2+S02+720p+WEBRip+x265-HETeam&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/mvtube"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 2.42&nbsp;GiB, ULed by <a class="detDesc" href="/user/mvtube/" title="Browse mvtube">mvtube</a></font>
+                </td>
+                <td align="right">16</td>
+                <td align="right">3</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847320/Stranger.Things.S02E09.iNTERNAL.WEB.x264-STRiFE_" class="detLink" title="Details for Stranger.Things.S02E09.iNTERNAL.WEB.x264-STRiFE ">Stranger.Things.S02E09.iNTERNAL.WEB.x264-STRiFE </a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:0bfad7bc8abef9a20f089088ef4b4d75e97dca2d&dn=Stranger.Things.S02E09.iNTERNAL.WEB.x264-STRiFE+&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 418.58&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">16</td>
+                <td align="right">3</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/208" title="More from this category">HD - TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18840252/Stranger.Things.S02E06.iNTERNAL.720p.WEB.x264-STRiFE[ettv]" class="detLink" title="Details for Stranger.Things.S02E06.iNTERNAL.720p.WEB.x264-STRiFE[ettv]">Stranger.Things.S02E06.iNTERNAL.720p.WEB.x264-STRiFE[ettv]</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:0bab18193635407cb48a2f6bc51538403fc90350&dn=Stranger.Things.S02E06.iNTERNAL.720p.WEB.x264-STRiFE%5Bettv%5D&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/EtHD"><img src="//assetss.b-cdn.net/static/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 880.8&nbsp;MiB, ULed by <a class="detDesc" href="/user/EtHD/" title="Browse EtHD">EtHD</a></font>
+                </td>
+                <td align="right">14</td>
+                <td align="right">1</td>
+            </tr>
+            <tr>
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847226/Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE" class="detLink" title="Details for Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE">Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:10944ee2da56c9d86bb27d21a2d12f53f86de840&dn=Stranger.Things.S02E01.iNTERNAL.WEB.x264-STRiFE&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 375.4&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">14</td>
+                <td align="right">0</td>
+            </tr>
+            <tr class="alt">
+                <td class="vertTh">
+                    <center>
+                        <a href="/browse/200" title="More from this category">Video</a><br />
+                        (<a href="/browse/205" title="More from this category">TV shows</a>)
+                    </center>
+                </td>
+                <td>
+                    <div class="detName">			<a href="/torrent/18847288/Stranger.Things.S02E05.iNTERNAL.WEB.x264-STRiFE" class="detLink" title="Details for Stranger.Things.S02E05.iNTERNAL.WEB.x264-STRiFE">Stranger.Things.S02E05.iNTERNAL.WEB.x264-STRiFE</a>
+                    </div>
+                    <a href="magnet:?xt=urn:btih:bf795ea32ae2d7f1da3b3e28befe38fb6debe2b6&dn=Stranger.Things.S02E05.iNTERNAL.WEB.x264-STRiFE&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969" title="Download this torrent using magnet"><img src="//assetss.b-cdn.net/static/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/MrStark"><img src="//assetss.b-cdn.net/static/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//assetss.b-cdn.net/static/img/11x11p.png" />
+                    <font class="detDesc">Uploaded 10-27&nbsp;2017, Size 373.78&nbsp;MiB, ULed by <a class="detDesc" href="/user/MrStark/" title="Browse MrStark">MrStark</a></font>
+                </td>
+                <td align="right">14</td>
+                <td align="right">2</td>
+            </tr>
+
+        </table>
+    </div>
+    <div align="center">1&nbsp;<a href="/search/stranger things/1/7//">2</a>&nbsp;<a href="/search/stranger things/2/7//">3</a>&nbsp;<a href="/search/stranger things/3/7//">4</a>&nbsp;<a href="/search/stranger things/4/7//">5</a>&nbsp;<a href="/search/stranger things/5/7//">6</a>&nbsp;<a href="/search/stranger things/6/7//">7</a>&nbsp;<a href="/search/stranger things/7/7//">8</a>&nbsp;<a href="/search/stranger things/8/7//">9</a>&nbsp;<a href="/search/stranger things/9/7//">10</a>&nbsp;<a href="/search/stranger things/1/7//"><img src="//assetss.b-cdn.net/static/img/next.gif" border="0" alt="Next"/></a>&nbsp;
+    </div>
+    <div class="ads" id="sky-banner">
+
+    </div>
+
+</div></div>	</div><!-- //div:content -->
+
+
+<div id="foot" style="text-align:center;margin-top:1em;">
+
+
+    <div class="powr-paypal-button" id="04da7223_1556855429"></div>
+
+
+
+
+    <p>
+        <a href="/login" title="Login">Login</a> |
+        <a href="/register" title="Register">Register</a> |
+        <a href="/language" title="Select language">Language / Select language</a> |
+        <a href="/about" title="About">About</a> |
+        <a href="/blog" title="Blog">Blog</a>
+        <br />
+        <!--<a href="/contact" title="Contact us">Contact us</a> |-->
+        <a href="/policy" title="Usage policy">Usage policy</a> |
+        <a href="http://uj3wazyk5u4hnvtk.onion" title="TOR">TOR</a> |
+        <a href="/doodles" title="Doodles">Doodles</a> |
+        <a href="http://pirates-forum.org/" title="Forum" target="_blank">Forum</a>
+        <br />
+    </p>
+
+    <br /><a href="https://bitcoin.org" target="_NEW">BTC</a>: <b>388Lp3JGbQVkocD6ukD4LvdV4cd4TGvF8p</b><br /><a href="https://bitcoin.org" target="_NEW"></a>: <b></b><br /><a href="https://litecoin.org" target="_NEW">LTC</a>: <b>MDWYmsTwCfpBxjqeeVfEA2VUHbQQ32rTbH</b><br /> <b></b>
+
+    <div id="fbanners">
+        <a href="/rss" class="rss" title="RSS"><img src="//assetss.b-cdn.net/static/img/rss_small.gif" alt="RSS" /></a>
+    </div><!-- // div:fbanners -->
+</div><!-- // div:foot -->
+
+
+
+
+
+
+
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-127802793-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127802793-1');
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: MediaDownloaderApp
+  datasource:
+    url: jdbc:postgresql://localhost:5433/mediadownloader
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+
+piratebay:
+  proxies:
+    url: https://piratebay-proxylist.se
+
+logging:
+  level:
+    reactor:
+      netty: error
