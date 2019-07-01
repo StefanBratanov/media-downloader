@@ -1,8 +1,9 @@
-package org.stefata.mediadownloader.piratebay;
+package org.stefata.mediadownloader.html;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
+import org.stefata.mediadownloader.piratebay.SearchResult;
 
 import java.util.List;
 import java.util.stream.Collectors;

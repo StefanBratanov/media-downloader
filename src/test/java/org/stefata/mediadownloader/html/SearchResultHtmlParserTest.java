@@ -1,4 +1,4 @@
-package org.stefata.mediadownloader.piratebay;
+package org.stefata.mediadownloader.html;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.stefata.mediadownloader.html.SearchResultHtmlParser;
+import org.stefata.mediadownloader.piratebay.SearchResult;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

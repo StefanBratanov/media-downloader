@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.stefata.mediadownloader.html.HtmlExtractor;
+import org.stefata.mediadownloader.html.SearchResultHtmlParser;
 import org.stefata.mediadownloader.persistence.model.TvShow;
 import org.stefata.mediadownloader.persistence.model.TvShowControlTable;
 import org.stefata.mediadownloader.persistence.repository.TvShowControlTableRepository;

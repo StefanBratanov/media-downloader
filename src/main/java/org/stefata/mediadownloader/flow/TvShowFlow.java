@@ -10,7 +10,7 @@ import org.stefata.mediadownloader.persistence.repository.TvShowControlTableRepo
 import org.stefata.mediadownloader.piratebay.PirateBayUrlCreator;
 import org.stefata.mediadownloader.piratebay.Proxy;
 import org.stefata.mediadownloader.piratebay.ProxySearch;
-import org.stefata.mediadownloader.piratebay.SearchResultHtmlParser;
+import org.stefata.mediadownloader.html.SearchResultHtmlParser;
 import org.stefata.mediadownloader.regex.EpisodeDetailsCreator;
 import org.stefata.mediadownloader.shows.EpisodeDetails;
 import org.stefata.mediadownloader.torrent.TorrentDownloader;
