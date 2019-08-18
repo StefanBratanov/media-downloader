@@ -26,7 +26,6 @@ public class EpisodeDetailsCreator {
                 .filter(Matcher::matches)
                 .findFirst()
                 .map(matcher -> {
-                    log.info("{} matched {}", title, matcher.pattern());
                     String season = matcher.group("season");
                     String episode = matcher.group("episode");
                     return EpisodeDetails.builder()

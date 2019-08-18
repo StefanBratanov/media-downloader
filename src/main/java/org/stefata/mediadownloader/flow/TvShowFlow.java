@@ -52,7 +52,7 @@ public class TvShowFlow {
             return;
         }
         TvShowControlTable controlTable = maybeControlTable.get();
-        Mono.just(urlCreator.createSearchUrl(torrentSiteDomain,tvShowTitle))
+        Mono.just(urlCreator.createSearchUrl(torrentSiteDomain, tvShowTitle))
                 .map(htmlExtractor::fromUrl)
                 .map(searchResultHtmlParser::parse)
                 .flatMapMany(Flux::fromIterable)
@@ -76,6 +76,8 @@ public class TvShowFlow {
                                 .torrentUrl(searchResult.getTorrentUrl())
                                 .build();
                     }
+                    log.info("Will not download {} because it is not an episode" +
+                            " that needs to be downloaded", torrentTitle);
                     return TvShowTorrent.builder().build();
                 })
                 .filter(tvShowTorrent -> nonNull(tvShowTorrent.getTvShow()))

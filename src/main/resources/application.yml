@@ -23,6 +23,11 @@ torrent:
   download:
     path: C:\Users\StefanPC\Downloads\Test
 
+flow:
+  run:
+    # every 5 minutes
+    cron: "0 0/5 * * * *"
+
 logging:
   level:
     reactor:

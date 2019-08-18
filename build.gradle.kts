@@ -40,6 +40,7 @@ dependencies {
     implementation("com.google.guava:guava:28.0-jre")
     implementation("org.jsoup:jsoup:1.12.1")
     implementation("com.pivovarit:throwing-function:1.4")
+    implementation("de.jkeylockmanager:jkeylockmanager:2.1.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-params")
     testRuntime("org.junit.jupiter:junit-jupiter-engine")
