@@ -4,31 +4,44 @@ import org.awaitility.Duration;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.stefata.mediadownloader.html.HtmlExtractor;
-import org.stefata.mediadownloader.html.SearchResultHtmlParser;
+import org.stefata.mediadownloader.interfaces.SearchResultHtmlParser;
+import org.stefata.mediadownloader.interfaces.UrlCreator;
 import org.stefata.mediadownloader.persistence.model.TvShow;
 import org.stefata.mediadownloader.persistence.model.TvShowControlTable;
+import org.stefata.mediadownloader.persistence.model.TvShowTorrent;
 import org.stefata.mediadownloader.persistence.repository.TvShowControlTableRepository;
-import org.stefata.mediadownloader.piratebay.*;
+import org.stefata.mediadownloader.persistence.repository.TvShowTorrentRepository;
 import org.stefata.mediadownloader.regex.EpisodeDetailsCreator;
 import org.stefata.mediadownloader.shows.EpisodeDetails;
+import org.stefata.mediadownloader.torrent.SearchResult;
 import org.stefata.mediadownloader.torrent.TorrentDownloader;
-import reactor.core.publisher.Mono;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.*;
+import static pl.touk.throwing.ThrowingSupplier.unchecked;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TvShowFlow.class)
+@SpringBootTest(classes = TvShowFlow.class)
+@ActiveProfiles("test")
 class TvShowFlowTest {
+
+    private static final URL TORRENT_URL = unchecked(() ->
+            new URL("https://www.google.com")).get();
 
     private static final String TITLE = "Pine Gap";
     private static final TvShow TV_SHOW = TvShow.builder()
@@ -41,6 +54,8 @@ class TvShowFlowTest {
             .build();
     private static final SearchResult VALID_SEARCH_RESULT = SearchResult.builder()
             .title("Pine Gap something")
+            .magnetLink("magnet?:xxx")
+            .torrentUrl(TORRENT_URL)
             .build();
 
     @Mock
@@ -49,9 +64,7 @@ class TvShowFlowTest {
     @MockBean
     private TvShowControlTableRepository tvShowControlTableRepository;
     @MockBean
-    private ProxySearch proxySearch;
-    @MockBean
-    private PirateBayUrlCreator pirateBayUrlCreator;
+    private UrlCreator urlCreator;
     @MockBean
     private HtmlExtractor htmlExtractor;
     @MockBean
@@ -60,6 +73,11 @@ class TvShowFlowTest {
     private EpisodeDetailsCreator episodeDetailsCreator;
     @MockBean
     private TorrentDownloader torrentDownloader;
+    @MockBean
+    private TvShowTorrentRepository tvShowTorrentRepository;
+
+    @Captor
+    private ArgumentCaptor<TvShowControlTable> argumentCaptor;
 
     @Autowired
     private TvShowFlow subject;
@@ -69,7 +87,7 @@ class TvShowFlowTest {
         when(tvShowControlTableRepository.findByTvShow_Title(TITLE))
                 .thenReturn(Optional.empty());
         subject.runFlow(TV_SHOW);
-        verifyZeroInteractions(proxySearch);
+        verifyZeroInteractions(urlCreator);
     }
 
     @Test
@@ -77,10 +95,7 @@ class TvShowFlowTest {
         when(tvShowControlTableRepository.findByTvShow_Title(TITLE))
                 .thenReturn(Optional.of(TV_SHOW_CONTROL_TABLE));
 
-        Proxy proxy = Proxy.builder().domain("xxx.com").build();
-
-        when(proxySearch.getProxy()).thenReturn(Mono.just(proxy));
-        when(pirateBayUrlCreator.createSearchUrl("xxx.com", TITLE))
+        when(urlCreator.createSearchUrl("xxx.com", TITLE))
                 .thenReturn("https://xxx.com/lolly");
 
         when(htmlExtractor.fromUrl("https://xxx.com/lolly")).thenReturn(document);
@@ -124,16 +139,33 @@ class TvShowFlowTest {
                         .build()
         ));
 
+        CompletableFuture future = CompletableFuture.completedFuture(new Object());
+        when(torrentDownloader.download(TORRENT_URL)).thenReturn(future);
+
         //running flow
         subject.runFlow(TV_SHOW);
 
+        TvShowTorrent expectedTvShowTorrent = TvShowTorrent.builder()
+                .tvShow(TV_SHOW)
+                .torrentTitle("Pine Gap something")
+                .season(1)
+                .episode(6)
+                .torrentUrl(TORRENT_URL)
+                .build();
+
         await()
-                .atMost(Duration.FIVE_SECONDS)
+                .atMost(Duration.TEN_SECONDS)
                 .untilAsserted(() -> {
-                    verify(torrentDownloader).download(VALID_SEARCH_RESULT);
+                    verify(torrentDownloader).download(TORRENT_URL);
+                    verify(tvShowTorrentRepository).save(expectedTvShowTorrent);
+                    verify(tvShowControlTableRepository).save(argumentCaptor.capture());
+                    TvShowControlTable controlTable = argumentCaptor.getValue();
+                    assertThat(controlTable.getCurrentSeason()).isEqualTo(1);
+                    assertThat(controlTable.getLastDownloadedEpisode()).isEqualTo(6);
                 });
 
         verifyNoMoreInteractions(torrentDownloader);
+        verifyNoMoreInteractions(tvShowTorrentRepository);
 
     }
 

@@ -17,6 +17,12 @@ piratebay:
   proxies:
     url: https://piratebay-proxylist.se
 
+torrent:
+  site:
+    domain: https://www.limetorrents.info
+  download:
+    path: C:\Users\StefanPC\Downloads\Test
+
 logging:
   level:
     reactor:

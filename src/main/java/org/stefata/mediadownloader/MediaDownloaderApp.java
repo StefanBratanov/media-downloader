@@ -9,4 +9,5 @@ public class MediaDownloaderApp {
     public static void main(String[] args) {
         SpringApplication.run(MediaDownloaderApp.class, args);
     }
+
 }

@@ -15,16 +15,10 @@ import org.stefata.mediadownloader.persistence.model.TvShowControlTable;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = MediaDownloaderApp.class)
 class TvShowControlTableRepositoryITest extends DatabaseIT {
-
-    @Autowired
-    private TvShowRepository tvShowRepository;
-    @Autowired
-    private TvShowControlTableRepository subject;
 
     @Test
     public void savesTvShowControlTable() {
@@ -44,7 +38,7 @@ class TvShowControlTableRepositoryITest extends DatabaseIT {
                 .lastDownloadedEpisode(5)
                 .build();
 
-        TvShowControlTable result = subject.save(tvShowControlTable);
+        TvShowControlTable result = tvShowControlTableRepository.save(tvShowControlTable);
 
         assertThat(result).isEqualTo(tvShowControlTable);
         assertThat(result.getId()).isNotNull().isGreaterThan(0L);
@@ -58,7 +52,7 @@ class TvShowControlTableRepositoryITest extends DatabaseIT {
                 .build();
 
         Exception exception = Assertions.assertThrows(InvalidDataAccessApiUsageException.class, () ->
-                subject.save(invalidTvShowControlTable));
+                tvShowControlTableRepository.save(invalidTvShowControlTable));
 
         assertThat(exception)
                 .hasStackTraceContaining("org.hibernate.TransientPropertyValueException: " +
@@ -80,17 +74,20 @@ class TvShowControlTableRepositoryITest extends DatabaseIT {
                 .lastDownloadedEpisode(5)
                 .build();
 
-        subject.save(tvShowControlTable);
+        tvShowControlTableRepository.save(tvShowControlTable);
 
-        Optional<TvShowControlTable> result = subject.findByTvShow_Title("Pine Gap");
+        Optional<TvShowControlTable> result = tvShowControlTableRepository
+                .findByTvShow_Title("Pine Gap");
 
         assertThat(result).hasValue(tvShowControlTable);
 
-        Optional<TvShowControlTable> invalid = subject.findByTvShow_Title("Game of Thrones");
+        Optional<TvShowControlTable> invalid = tvShowControlTableRepository
+                .findByTvShow_Title("Game of Thrones");
 
         assertThat(invalid).isEmpty();
 
-        assertThat(subject.findByTvShow_Title("pine gap")).isEmpty();
+        assertThat(tvShowControlTableRepository
+                .findByTvShow_Title("pine gap")).isEmpty();
     }
 
 }

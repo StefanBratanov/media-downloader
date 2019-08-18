@@ -1,14 +1,16 @@
-package org.stefata.mediadownloader.piratebay;
+package org.stefata.mediadownloader.torrent;
 
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
+import java.net.URL;
+
+@Builder(toBuilder = true)
 @Data
 public class SearchResult {
 
     private final String title;
     private final String magnetLink;
-    private final String urlPath;
+    private final URL torrentUrl;
 
 }

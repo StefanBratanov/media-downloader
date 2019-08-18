@@ -2,21 +2,27 @@ package org.stefata.mediadownloader.flow;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.stefata.mediadownloader.html.HtmlExtractor;
+import org.stefata.mediadownloader.interfaces.SearchResultHtmlParser;
+import org.stefata.mediadownloader.interfaces.UrlCreator;
 import org.stefata.mediadownloader.persistence.model.TvShow;
 import org.stefata.mediadownloader.persistence.model.TvShowControlTable;
+import org.stefata.mediadownloader.persistence.model.TvShowTorrent;
 import org.stefata.mediadownloader.persistence.repository.TvShowControlTableRepository;
-import org.stefata.mediadownloader.piratebay.PirateBayUrlCreator;
-import org.stefata.mediadownloader.piratebay.Proxy;
-import org.stefata.mediadownloader.piratebay.ProxySearch;
-import org.stefata.mediadownloader.html.SearchResultHtmlParser;
+import org.stefata.mediadownloader.persistence.repository.TvShowTorrentRepository;
 import org.stefata.mediadownloader.regex.EpisodeDetailsCreator;
 import org.stefata.mediadownloader.shows.EpisodeDetails;
 import org.stefata.mediadownloader.torrent.TorrentDownloader;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 
+import java.net.URL;
 import java.util.Optional;
+
+import static java.util.Objects.nonNull;
 
 @Slf4j
 @Component
@@ -24,12 +30,16 @@ import java.util.Optional;
 public class TvShowFlow {
 
     private final TvShowControlTableRepository tvShowControlTableRepository;
-    private final ProxySearch proxySearch;
-    private final PirateBayUrlCreator pirateBayUrlCreator;
+
+    @Value("${torrent.site.domain}")
+    private String torrentSiteDomain;
+
+    private final UrlCreator urlCreator;
     private final HtmlExtractor htmlExtractor;
     private final SearchResultHtmlParser searchResultHtmlParser;
     private final EpisodeDetailsCreator episodeDetailsCreator;
     private final TorrentDownloader torrentDownloader;
+    private final TvShowTorrentRepository tvShowTorrentRepository;
 
     public void runFlow(TvShow tvShow) {
         String tvShowTitle = tvShow.getTitle();
@@ -42,28 +52,49 @@ public class TvShowFlow {
             return;
         }
         TvShowControlTable controlTable = maybeControlTable.get();
-        proxySearch.getProxy()
-                .map(Proxy::getDomain)
-                .map(domain -> pirateBayUrlCreator.createSearchUrl(domain, tvShowTitle))
+        Mono.just(urlCreator.createSearchUrl(torrentSiteDomain,tvShowTitle))
                 .map(htmlExtractor::fromUrl)
                 .map(searchResultHtmlParser::parse)
                 .flatMapMany(Flux::fromIterable)
-                .filter(searchResult -> {
+                .map(searchResult -> {
                     String torrentTitle = searchResult.getTitle();
                     Optional<EpisodeDetails> maybeEpisodeDetails =
                             episodeDetailsCreator.fromTorrentTitle(torrentTitle);
                     if (maybeEpisodeDetails.isEmpty()) {
-                        return false;
+                        return TvShowTorrent.builder().build();
                     }
                     EpisodeDetails episodeDetails = maybeEpisodeDetails.get();
                     if (episodeHasNotBeenDownloaded(controlTable, episodeDetails)) {
-                        log.info("{} will be downloaded", torrentTitle);
-                        return true;
+                        log.info("Will download Season {}, Episode {} for {}",
+                                episodeDetails.getSeason(),
+                                episodeDetails.getEpisode(), tvShowTitle);
+                        return TvShowTorrent.builder()
+                                .tvShow(tvShow)
+                                .torrentTitle(torrentTitle)
+                                .season(episodeDetails.getSeason())
+                                .episode(episodeDetails.getEpisode())
+                                .torrentUrl(searchResult.getTorrentUrl())
+                                .build();
                     }
-                    return false;
+                    return TvShowTorrent.builder().build();
                 })
+                .filter(tvShowTorrent -> nonNull(tvShowTorrent.getTvShow()))
                 .next()
-                .subscribe(torrentDownloader::download);
+                .zipWhen(tvShowTorrent -> {
+                    URL torrentUrl = tvShowTorrent.getTorrentUrl();
+                    log.info("Starting to download {} from {}",
+                            tvShowTorrent.getTorrentTitle(), torrentUrl);
+                    return Mono.fromFuture(torrentDownloader.download(torrentUrl));
+                })
+                .map(Tuple2::getT1)
+                .subscribe(tvShowTorrent -> {
+                    log.info("Successfully downloaded {}", tvShowTorrent.getTorrentTitle());
+                    tvShowTorrentRepository.save(tvShowTorrent);
+                    log.info("Updating control table for {}", tvShowTitle);
+                    controlTable.setCurrentSeason(tvShowTorrent.getSeason());
+                    controlTable.setLastDownloadedEpisode(tvShowTorrent.getEpisode());
+                    tvShowControlTableRepository.save(controlTable);
+                });
     }
 
     private boolean episodeHasNotBeenDownloaded(TvShowControlTable controlTable,

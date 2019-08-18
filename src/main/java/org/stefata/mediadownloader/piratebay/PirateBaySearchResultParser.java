@@ -1,16 +1,16 @@
-package org.stefata.mediadownloader.html;
+package org.stefata.mediadownloader.piratebay;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.springframework.stereotype.Component;
-import org.stefata.mediadownloader.piratebay.SearchResult;
+import org.stefata.mediadownloader.interfaces.SearchResultHtmlParser;
+import org.stefata.mediadownloader.torrent.SearchResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
-public class SearchResultHtmlParser {
+public class PirateBaySearchResultParser implements SearchResultHtmlParser {
 
+    @Override
     public List<SearchResult> parse(Document document) {
         return document
                 .select("table#searchResult")
@@ -26,7 +26,6 @@ public class SearchResultHtmlParser {
                             .attr("href");
                     return SearchResult.builder()
                             .title(detLink.html())
-                            .urlPath(detLink.attr("href"))
                             .magnetLink(magnetLink)
                             .build();
                 })

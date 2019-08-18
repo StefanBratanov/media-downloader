@@ -1,19 +1,17 @@
-package org.stefata.mediadownloader.piratebay;
+package org.stefata.mediadownloader.limetorrents;
 
+import org.springframework.stereotype.Component;
 import org.stefata.mediadownloader.interfaces.UrlCreator;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class PirateBayUrlCreator implements UrlCreator  {
+@Component
+public class LimeTorrentsUrlCreator implements UrlCreator {
 
+    @Override
     public String createSearchUrl(String domain, String searchCriteria) {
         var encodedSearch = URLEncoder.encode(searchCriteria, StandardCharsets.UTF_8);
-        return "https://" +
-                domain +
-                "/search.php?q=" +
-                encodedSearch;
+        return domain + "/search/all/" + encodedSearch;
     }
-
-
 }

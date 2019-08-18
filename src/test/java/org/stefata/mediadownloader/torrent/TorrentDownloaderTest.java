@@ -1,14 +1,14 @@
 package org.stefata.mediadownloader.torrent;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.stefata.mediadownloader.piratebay.SearchResult;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TorrentDownloader.class)
+@SpringBootTest(classes = TorrentDownloader.class)
 class TorrentDownloaderTest {
 
     @Autowired
@@ -16,7 +16,13 @@ class TorrentDownloaderTest {
 
     @Test
     public void testDownloading() {
-        subject.download(SearchResult.builder().build());
+        //TODO: create test
+    }
+
+    @Test
+    public void testDownloadingUsingMagnetLink() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () ->
+                subject.download("magnet:?xt=urn"));
     }
 
 }

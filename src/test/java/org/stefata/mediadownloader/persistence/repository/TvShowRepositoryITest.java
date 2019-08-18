@@ -20,16 +20,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = MediaDownloaderApp.class)
 class TvShowRepositoryITest extends DatabaseIT {
 
-    @Autowired
-    private TvShowRepository subject;
-
     @Test
     public void savesTvShow() {
         TvShow tvShow = TvShow.builder()
                 .title("Game of thrones")
                 .build();
 
-        TvShow result = subject.save(tvShow);
+        TvShow result = tvShowRepository.save(tvShow);
 
         assertThat(result).isEqualTo(tvShow);
         assertThat(result.getId()).isNotNull().isGreaterThan(0L);

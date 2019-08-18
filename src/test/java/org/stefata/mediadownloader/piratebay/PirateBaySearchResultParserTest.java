@@ -1,4 +1,4 @@
-package org.stefata.mediadownloader.html;
+package org.stefata.mediadownloader.piratebay;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,8 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.stefata.mediadownloader.html.SearchResultHtmlParser;
-import org.stefata.mediadownloader.piratebay.SearchResult;
+import org.stefata.mediadownloader.TestResources;
+import org.stefata.mediadownloader.torrent.SearchResult;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -19,17 +19,18 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.stefata.mediadownloader.TestResources.readResource;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = SearchResultHtmlParser.class)
-class SearchResultHtmlParserTest {
+@ContextConfiguration(classes = PirateBaySearchResultParser.class)
+class PirateBaySearchResultParserTest {
 
     @Autowired
-    private SearchResultHtmlParser subject;
+    private PirateBaySearchResultParser subject;
 
     @Test
     public void parsesSearchResultHtml() throws URISyntaxException {
-        String searchPageSource = readResource("/search-page-source.html");
+        String searchPageSource = readResource("/search-results/piratebay.html");
         Document document = Jsoup.parse(searchPageSource);
 
         List<SearchResult> result = subject.parse(document);
@@ -42,24 +43,11 @@ class SearchResultHtmlParserTest {
                         "%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A13" +
                         "37&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus." +
                         "desync.com%3A6969")
-                .urlPath("/torrent/15324627/Stranger_Things_Season_1_720p_WebRip_EN-SUB_x264-[MULVAcoded]")
                 .build();
 
         assertThat(result).hasSize(30);
         assertThat(result).first().isEqualTo(expectedFirst);
         assertThat(result).allMatch(Objects::nonNull);
-
-    }
-
-    public String readResource(String resource) throws URISyntaxException {
-        try {
-            return Files.readString(
-                    Paths.get(this.getClass().getResource(resource)
-                            .toURI()));
-        } catch (IOException ioex) {
-            throw new UncheckedIOException(ioex);
-        }
-
 
     }
 
