@@ -2,3 +2,6 @@ language: java
 
 jdk:
   - openjdk12
+
+script:
+  - git update-index --chmod=+x gradlew
