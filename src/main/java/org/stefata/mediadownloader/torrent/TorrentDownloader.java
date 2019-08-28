@@ -58,9 +58,9 @@ public class TorrentDownloader {
 
     private URL getRedirectUrlIfRequired(URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        int statusCode = connection.getResponseCode(); //get response code
+        int statusCode = connection.getResponseCode();
         if (statusCode == HttpURLConnection.HTTP_MOVED_TEMP
-                || statusCode == HttpURLConnection.HTTP_MOVED_PERM) { // if file is moved, then pick new URL
+                || statusCode == HttpURLConnection.HTTP_MOVED_PERM) {
             return new URL(connection.getHeaderField("Location"));
         }
         return url;
