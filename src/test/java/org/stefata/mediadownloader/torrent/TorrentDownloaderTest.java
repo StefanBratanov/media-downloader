@@ -14,9 +14,10 @@ class TorrentDownloaderTest {
     @Autowired
     private TorrentDownloader subject;
 
+    //TODO: find a way to unit test
     @Test
-    public void testDownloading() {
-        //TODO: create test
+    public void testDownloading()  {
+
     }
 
     @Test
